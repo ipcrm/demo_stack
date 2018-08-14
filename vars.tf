@@ -40,11 +40,3 @@ variable "instance_type" {
     "linux"   = "t2.small"
   }
 }
-
-variable "windows_count" {
-  default = "2"
-}
-
-variable "linux_count" {
-  default = "3"
-}
