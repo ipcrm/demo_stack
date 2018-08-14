@@ -68,8 +68,22 @@ resource "aws_security_group" "demo_stack-securitygroup" {
   }
 
   ingress {
-    from_port   = 8140
-    to_port     = 8140
+    from_port   = 8143
+    to_port     = 8143
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8170
+    to_port     = 8170
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 4433
+    to_port     = 4433
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -82,15 +96,15 @@ resource "aws_security_group" "demo_stack-securitygroup" {
   }
 
   ingress {
-    from_port   = 8081
-    to_port     = 8081
+    from_port   = 8000
+    to_port     = 8000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 8000
-    to_port     = 8000
+    from_port   = 8081
+    to_port     = 8081
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
