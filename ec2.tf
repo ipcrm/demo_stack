@@ -106,6 +106,18 @@ resource "aws_instance" "demo-lnx" {
   lifecycle {
     ignore_changes = ["tags", "source_dest_check", "ami", "user_data", "vpc_security_group_ids"]
   }
+
+  provisioner "remote-exec" {
+    when   = "destroy"
+    inline = [
+      "sudo /opt/puppetlabs/puppet/bin/puppet node purge ${self.public_dns}"
+    ]
+    connection {
+      user        = "centos"
+      host        = "${aws_instance.puppet_master_instance.public_ip}"
+      private_key = "${file("pem/id_rsa")}"
+    }
+  }
 }
 
 output "lnx-ip" {
@@ -133,6 +145,18 @@ resource "aws_instance" "demo-win" {
 
   lifecycle {
     ignore_changes = ["tags", "source_dest_check", "ami", "user_data", "vpc_security_group_ids"]
+  }
+
+  provisioner "remote-exec" {
+    when   = "destroy"
+    inline = [
+      "sudo /opt/puppetlabs/puppet/bin/puppet node purge ${self.public_dns}"
+    ]
+    connection {
+      user        = "centos"
+      host        = "${aws_instance.puppet_master_instance.public_ip}"
+      private_key = "${file("pem/id_rsa")}"
+    }
   }
 }
 
