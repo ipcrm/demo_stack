@@ -147,7 +147,7 @@ resource "aws_instance" "demo-win-prod" {
   }
 }
 
-output "win-ip" {
+output "win-ip-prod" {
   value = ["${aws_instance.demo-win-prod.*.public_ip}"]
 }
 
