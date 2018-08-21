@@ -2,7 +2,7 @@ data "template_file" "init-int-win" {
   template = "${file("userdata/init-win.tpl")}"
   vars {
     master_ip  = "${aws_eip.master-ip.private_ip}"
-    target_env = "integration"
+    target_env = "int"
   }
 }
 
